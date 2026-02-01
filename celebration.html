@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>She Said Yes 💖</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+</head>
+<body>
+
+<div class="celebration-wrap">
+  <h1>Yayyy! I knew it 🥰💞</h1>
+
+  <div class="hearts">
+    <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGZzMXV5YWY1bXd5cmhlYXAyd2I1Ym44OHMyaHgza2F1NGk1MzFmdiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/LBb735fuQwRKAVzN23/giphy.gif">
+  </div>
+
+  <p>You just made my heart very happy 💓</p>
+
+  <div class="food">
+    <h2>Okayyy 😍 What do you want to eat?</h2>
+
+    <div class="food-menu">
+      <button class="food-item">🍕 Pizza</button>
+      <button class="food-item">🍔 Burger</button>
+      <button class="food-item">🍟 Fries</button>
+      <button class="food-item">🍝 Pasta</button>
+      <button class="food-item">🍫 Chocolate</button>
+      <button class="food-item">🍦 Ice Cream</button>
+    </div>
+
+    <p id="foodResult"></p>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll(".food-item").forEach(item => {
+    item.addEventListener("click", () => {
+      document.getElementById("foodResult").textContent =
+        `Perfect 😋 We'll eat ${item.textContent}! ❤️`;
+    });
+  });
+</script>
+...
+<div id="pushNotify" class="push-notify hidden">
+  💖 AS YOU SAY BAUNI MAHARAJ  
+  <span>LOVE FROM UR BOYFRND</span>
+</div>
+<script>
+  (function(){
+    emailjs.init("v8hEvzG81Vpa2SWOv");
+  })();
+
+  document.querySelectorAll(".food-item").forEach(item => {
+    item.addEventListener("click", () => {
+      const selectedFood = item.textContent;
+
+      // show on screen
+      document.getElementById("foodResult").textContent =
+        `Perfect 😋 We'll eat ${selectedFood}! ❤️`;
+
+      // send email
+      emailjs.send("service_t3o4as9", "template_yetjyjg", {
+        food: selectedFood
+      }).then(() => {
+        console.log("Email sent!");
+      }).catch(err => {
+        console.error("Email failed", err);
+      });
+    });
+  });
+</script>
+
+
+
+<!-- 👇 ADD SCRIPT HERE -->
+<script>
+
+  function showNotification() {
+    const notify = document.getElementById("pushNotify");
+    notify.classList.remove("hidden");
+    notify.classList.add("show");
+    setTimeout(() => notify.classList.remove("show"), 3000);
+  }
+</script>
+
+
+</body>
+</html>
+
+
+</body>
+</html>
